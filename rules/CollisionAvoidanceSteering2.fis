@@ -1,0 +1,60 @@
+[System]
+Name='CollisionAvoidanceSteering2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=15
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='DistanceToNearestObstacle(d0)'
+Range=[0 90]
+NumMFs=4
+MF1='Z':'sigmf',[-7 2]
+MF2='S':'dsigmf',[10 2 10 4]
+MF3='B':'sigmf',[10 20]
+MF4='M':'dsigmf',[-10 4 -10 20]
+
+[Input2]
+Name='DirectionOfd0(dphi0)'
+Range=[-3.1415 3.1415]
+NumMFs=7
+MF1='NS':'dsigmf',[50 -1 50 -0.5]
+MF2='Z':'dsigmf',[50 -0.5 50 0.5]
+MF3='PM':'dsigmf',[50 1 50 2.15]
+MF4='NM':'psigmf',[50 -2.15 -50 -1]
+MF5='PS':'dsigmf',[50 0.5 50 1]
+MF6='PB':'sigmf',[50 2.15]
+MF7='NB':'sigmf',[-50 -2.15]
+
+[Output1]
+Name='alph2'
+Range=[-1.5 1.5]
+NumMFs=5
+MF1='NS':'dsigmf',[12 -1.25 18 -0.25]
+MF2='Z':'dsigmf',[18 -0.25 18 0.25]
+MF3='PS':'dsigmf',[18 0.25 12 1.25]
+MF4='NM':'sigmf',[-12 -1.25]
+MF5='PM':'sigmf',[12 1.25]
+
+[Rules]
+1 4, 5 (1) : 1
+1 1, 5 (1) : 1
+1 4, 4 (1) : 1
+1 3, 4 (1) : 1
+1 5, 4 (1) : 1
+2 5, 4 (1) : 1
+2 3, 4 (1) : 1
+2 2, 4 (1) : 1
+2 1, 3 (1) : 1
+2 4, 5 (1) : 1
+3 2, 2 (1) : 1
+3 1, 2 (1) : 1
+3 3, 2 (1) : 1
+3 4, 2 (1) : 1
+3 5, 2 (1) : 1

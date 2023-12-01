@@ -1,0 +1,64 @@
+[System]
+Name='Rules'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=3
+NumRules=8
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='error'
+Range=[-15 15]
+NumMFs=5
+MF1='N':'trimf',[-15 -8 0]
+MF2='Z':'trimf',[-8 0 8]
+MF3='P':'trimf',[0 8 15]
+MF4='VN':'trimf',[-20 -15 -8]
+MF5='VP':'trimf',[8 15 20]
+
+[Input2]
+Name='d_e'
+Range=[-15 15]
+NumMFs=3
+MF1='N':'trapmf',[-20 -15 -5 0]
+MF2='Z':'trimf',[-5 0 5]
+MF3='P':'trapmf',[0 5 15 20]
+
+[Output1]
+Name='P'
+Range=[0 1]
+NumMFs=3
+MF1='L':'trimf',[-0.5 0 0.5]
+MF2='M':'trimf',[0 0.5 1]
+MF3='H':'trimf',[0.5 1 1.5]
+
+[Output2]
+Name='I'
+Range=[0 0.1]
+NumMFs=3
+MF1='L':'trimf',[-0.05 0 0.05]
+MF2='M':'trimf',[0 0.05 0.1]
+MF3='H':'trimf',[0.05 0.1 0.15]
+
+[Output3]
+Name='D'
+Range=[0 2]
+NumMFs=3
+MF1='L':'trimf',[-1 0 1]
+MF2='M':'trimf',[0 1 2]
+MF3='H':'trimf',[1 2 3]
+
+[Rules]
+4 0, 3 2 1 (1) : 1
+5 0, 3 2 1 (1) : 1
+-4 1, 1 2 3 (1) : 1
+-5 1, 1 2 3 (1) : 1
+-5 3, 1 2 3 (1) : 1
+-4 3, 1 2 3 (1) : 1
+0 2, 3 0 0 (1) : 1
+-2 0, 0 0 1 (1) : 1

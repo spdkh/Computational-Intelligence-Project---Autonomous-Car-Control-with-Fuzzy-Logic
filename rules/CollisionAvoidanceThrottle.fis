@@ -1,0 +1,85 @@
+[System]
+Name='CollisionAvoidanceThrottle'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=36
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='V'
+Range=[0 25]
+NumMFs=4
+MF1='S':'dsigmf',[5 1 2 7]
+MF2='M':'dsigmf',[2 7 2 17]
+MF3='B':'sigmf',[2 17]
+MF4='Z':'sigmf',[-5 1]
+
+[Input2]
+Name='d0'
+Range=[0 100]
+NumMFs=3
+MF1='Z':'sigmf',[-900 2]
+MF2='S':'dsigmf',[900 2 3 21]
+MF3='B':'sigmf',[800 21.5]
+
+[Input3]
+Name='dV'
+Range=[-0.1 0.1]
+NumMFs=3
+MF1='N':'sigmf',[-900 -0.005]
+MF2='Z':'dsigmf',[1500 -0.004 1500 0.004]
+MF3='P':'sigmf',[900 0.005]
+
+[Output1]
+Name='dgb3'
+Range=[-0.3 0.1]
+NumMFs=5
+MF1='NS':'dsigmf',[4800 -0.021 4080 -0.01]
+MF2='ZE':'dsigmf',[480 -0.01 480 0.01]
+MF3='PS':'dsigmf',[2000 0.01 2000 0.04]
+MF4='NB':'sigmf',[-900 -0.022]
+MF5='PB':'sigmf',[900 0.04]
+
+[Rules]
+4 1 1, 3 (1) : 1
+4 1 2, 3 (1) : 1
+4 1 3, 1 (1) : 1
+4 2 1, 3 (1) : 1
+4 2 2, 3 (1) : 1
+4 2 3, 2 (1) : 1
+4 3 1, 2 (1) : 1
+4 3 2, 2 (1) : 1
+4 3 3, 2 (1) : 1
+1 1 1, 3 (1) : 1
+1 1 2, 3 (1) : 1
+1 1 3, 1 (1) : 1
+1 2 1, 2 (1) : 1
+1 2 2, 2 (1) : 1
+1 2 3, 1 (1) : 1
+1 3 1, 2 (1) : 1
+1 3 2, 2 (1) : 1
+1 3 3, 2 (1) : 1
+2 1 1, 1 (1) : 1
+2 1 2, 4 (1) : 1
+2 1 3, 4 (1) : 1
+2 2 1, 2 (1) : 1
+2 2 2, 1 (1) : 1
+2 2 3, 4 (1) : 1
+2 3 1, 2 (1) : 1
+2 3 2, 2 (1) : 1
+2 3 3, 2 (1) : 1
+3 1 1, 1 (1) : 1
+3 1 2, 4 (1) : 1
+3 1 3, 4 (1) : 1
+3 2 1, 1 (1) : 1
+3 2 2, 1 (1) : 1
+3 2 3, 4 (1) : 1
+3 3 1, 2 (1) : 1
+3 3 2, 2 (1) : 1
+3 3 3, 2 (1) : 1

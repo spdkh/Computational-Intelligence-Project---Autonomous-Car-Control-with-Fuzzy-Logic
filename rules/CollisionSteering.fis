@@ -1,0 +1,50 @@
+[System]
+Name='CollisionAvoidanceSteering'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=0
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='V'
+Range=[0 25]
+NumMFs=4
+MF1='Z':'sigmf',[-5 1]
+MF2='S':'dsigmf',[6 1 2 6.97]
+MF3='M':'dsigmf',[2 6.97 2 17.1]
+MF4='B':'sigmf',[2 17]
+
+[Input2]
+Name='row'
+Range=[0 100]
+NumMFs=3
+MF1='Z':'sigmf',[-1 5]
+MF2='S':'dsigmf',[2 5 2 10]
+MF3='B':'sigmf',[1 10]
+
+[Input3]
+Name='dV'
+Range=[-0.1 0.1]
+NumMFs=3
+MF1='N':'sigmf',[-1000 -0.005]
+MF2='Z':'dsigmf',[1000 -0.005 1000 0.005]
+MF3='mf3':'sigmf',[1000 0.005]
+
+[Output1]
+Name='output1'
+Range=[-0.2 0.1]
+NumMFs=6
+MF1='NB':'sigmf',[-700 -0.14]
+MF2='NM':'dsigmf',[700 -0.14 700 -0.06]
+MF3='NS':'dsigmf',[700 -0.06 700 -0.005]
+MF4='Z':'dsigmf',[700 -0.005 700 0.004]
+MF5='PS':'dsigmf',[700 0.004 700 0.03]
+MF6='PB':'sigmf',[700 0.03]
+
+[Rules]
